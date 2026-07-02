@@ -24,17 +24,35 @@ source for the public event, person, publication, or historical frame.
   - Book anchor: Chapter 3: Beetles, Birds, Theories (book.md:319-372) supplies Fuller's history of Darwin's theory before publication.
   - Web context: Darwin, Wallace, and *Origin* sources corroborate the 1858 joint presentation and its role in the publication history.
 
+- **December 10, 1858 - Gray reads his Japan-North America plant-distribution paper in a Cambridge forum where Agassiz also belongs.** The zoom had been missing this pre-Origin test of Darwinian descent against Agassiz's special creationism. Check: web-confirmed; Fuller supplies the Darwin-Gray and Agassiz background. Book: F3, F9, F11. Web: Wired-GrayAgassiz, W-AsaGray, W-Agassiz.
+  - Lane: Darwin and Origin.
+  - Evidence: The event shows that the American Darwin argument had a runway before November 1859. Gray used plant geography to make a cautious empirical case for descent, while the same evidence threatened Agassiz's fixed-species geography.
+  - Book anchor: Chapter 3: Beetles, Birds, Theories (book.md:361-363) gives Darwin's botanical query to Gray; Chapters 9 and 11 give Agassiz's special creationism and Gray's later answer.
+  - Web context: Wired's Gray/Agassiz account gives the December 10, 1858 Cambridge Scientific Society reading and its later American Academy Memoirs form.
+
+- **February-April 1859 - Gray and Agassiz debate species creation at Academy meetings.** This is the audit correction for the missing Academy debate thread: before *Origin* reaches Concord, Gray has already begun publicly pressing Darwinian plant geography against Agassiz. Check: web-confirmed. Book: F3, F9, F11. Web: Wired-GrayAgassiz, W-AsaGray, W-Agassiz.
+  - Lane: Darwin and Origin.
+  - Evidence: The series clarifies why Agassiz's 1860 resistance is not just a new-book reaction. It continues an older methodological fight over evidence, ideal form, geography, and whether species are fixed acts of creation.
+  - Book anchor: Chapter 11: A Spirited Conflict (book.md:841-880) supplies Gray's printed answer to Agassiz after *Origin* appears.
+  - Web context: Wired describes three monthly Academy debates in February, March, and April 1859, followed by a May Cambridge Scientific Club meeting.
+
 - **June 1859 - Sanborn expects Brown to act soon, perhaps by July 4.** Fuller uses Sanborn's expectation to show how close the Concord abolition network already was to Brown's timetable. Check: web-confirmed context; Fuller supplies private date. Book: F5. Web: W-Sanborn, W-SecretSix, W-JohnBrownRaid.
   - Lane: Brown and Sanborn.
   - Evidence: The entry matters because it puts Sanborn inside Brown's impending action months before the raid. Fuller's wording makes Sanborn's later panic comprehensible: he did not know every operational detail, but he knew enough to fear exposure.
   - Book anchor: Chapter 5: Making a Stir (book.md:475-479) gives Sanborn's June 1859 expectation and the later burning of compromising papers.
   - Web context: Sanborn and Secret Six sources corroborate his connection to Brown's support network and the later Harpers Ferry investigation.
 
-- **October 16-18, 1859 - Brown raids Harpers Ferry and is captured.** Fuller places the failed raid at the emotional center of the Concord dinner that will soon receive Darwin's book. Check: web-confirmed. Book: F1, F5. Web: W-JohnBrownRaid, Battlefields-JohnBrown, W-JohnBrown.
+- **October 16-18, 1859 - Brown raids Harpers Ferry and is captured.** Fuller places the failed raid at the emotional center of the Concord dinner that will soon receive Darwin's book. Check: web-confirmed. Book: F1, F5. Web: W-JohnBrownRaid, NPS-JohnBrownRaid, W-JohnBrown.
   - Lane: Brown and Sanborn.
   - Evidence: The raid creates the political weather of Fuller's 1860. It implicates Sanborn, transforms Brown into a martyr for Thoreau and Alcott, and makes natural selection's language of struggle feel uncannily fitted to American crisis.
   - Book anchor: Chapter 1: The Book from Across the Atlantic (book.md:255-267) and Chapter 5: Making a Stir (book.md:477-481) narrate the raid and Sanborn's reaction.
   - Web context: Harpers Ferry sources corroborate the October 16-18 raid, capture, casualties, and Brown's failed plan.
+
+- **Late October 1859 - Sanborn burns papers, consults John A. Andrew, and bolts to Quebec.** Fuller presents this as Sanborn's first Canada run, before the January summons sends him north again. Check: web-confirmed context; Fuller supplies the Quebec sequence. Book: F5. Web: W-Sanborn, W-SecretSix, W-JohnBrownRaid.
+  - Lane: Brown and Sanborn.
+  - Evidence: This belongs in the zoom because it separates two different flights. The first follows Brown's captured correspondence; the second follows the Mason summons. Without both, Sanborn's winter panic and the April arrest attempt look flatter than Fuller makes them.
+  - Book anchor: Chapter 5: Making a Stir (book.md:477-490) gives the burned papers, Andrew's warning, Quebec, and Sanborn's return within a week.
+  - Web context: Secret Six and Sanborn sources corroborate Sanborn's Brown connection and his absconding to Canada after the raid.
 
 - **October 30, 1859 - Thoreau first delivers "A Plea for Captain John Brown" in Concord.** Fuller presents the speech as the moment Thoreau helps shift Northern abolitionist feeling toward Brown. Check: web-confirmed. Book: F7. Web: W-PleaJohnBrown, W-Thoreau, W-JohnBrownRaid.
   - Lane: Concord readers.
@@ -185,17 +203,17 @@ source for the public event, person, publication, or historical frame.
   - Book anchor: Chapter 21: A Cold Shudder (book.md:1520-1554) gives Gray's August essay and Darwin's "cold shudder" exchange.
   - Web context: Asa Gray, Darwin, and *Origin* sources corroborate the figures and debate; Fuller supplies the close reading of the letters and essay sequence.
 
-- **Late September 1860 - Thoreau delivers "The Succession of Forest Trees" in Concord.** Fuller presents the lecture as Thoreau's clearest public Darwinian achievement. Check: web-confirmed context; Fuller supplies exact local frame. Book: F19. Web: W-Thoreau, W-ConservationUS, Wikisource-Succession.
+- **Late September 1860 - Thoreau delivers "The Succession of Forest Trees" in Concord.** Fuller presents the lecture as Thoreau's clearest public Darwinian achievement. Check: web-confirmed context; Fuller supplies exact local frame. Book: F19. Web: W-Thoreau, W-EcologicalSuccession, Gutenberg-Succession.
   - Lane: Thoreau seeds and death.
   - Evidence: The lecture turns Darwin into Concord ecology. Thoreau rejects spontaneous generation, explains seed dispersal by animals and wind, and turns forest succession into a historical process that ordinary farmers can observe.
   - Book anchor: Chapter 19: The Succession of Forest Trees (book.md:1413-1435) gives the fair, the lecture, and Fuller's reading of the seed argument.
-  - Web context: Conservation and Thoreau sources corroborate the 1860 lecture and its ecological importance; Wikisource supplies the text.
+  - Web context: Ecological succession and Thoreau sources corroborate the 1860 lecture and its ecological importance; Project Gutenberg supplies the text.
 
-- **Early October 1860 - Greeley publishes "The Succession of Forest Trees" and challenges Thoreau about birches.** Fuller uses the exchange to sharpen Thoreau's distinction between observation and theory. Check: web-confirmed context; Fuller supplies exchange details. Book: F20. Web: W-Thoreau, W-ConservationUS, Wikisource-Succession.
+- **Early October 1860 - Greeley publishes "The Succession of Forest Trees" and challenges Thoreau about birches.** Fuller uses the exchange to sharpen Thoreau's distinction between observation and theory. Check: web-confirmed context; Fuller supplies exchange details. Book: F20. Web: W-Thoreau, W-EcologicalSuccession, Gutenberg-Succession.
   - Lane: Thoreau seeds and death.
   - Evidence: Greeley's challenge is the public afterlife of the lecture. Thoreau insists that seed dispersal, not spontaneous generation, explains regrowth after fire, making his Darwinian materialism more explicit and more empirical.
   - Book anchor: Chapter 20: Races of the Old World (book.md:1443-1451) gives Greeley's challenge and Thoreau's reply.
-  - Web context: Thoreau and conservation sources corroborate the lecture's ecological frame; Wikisource supplies the published essay.
+  - Web context: Thoreau and ecological-succession sources corroborate the lecture's ecological frame; Project Gutenberg supplies the published essay.
 
 - **October 1860 - Gray's third Atlantic essay argues that natural selection concerns the how, not the why.** Fuller marks this as Gray's mature attempt to reconcile Darwin and design. Check: web-confirmed context; Fuller supplies interpretive placement. Book: F21. Web: W-AsaGray, W-Origin.
   - Lane: Darwin and Origin.
@@ -207,7 +225,7 @@ source for the public event, person, publication, or historical frame.
   - Lane: Thoreau seeds and death.
   - Evidence: This is where the seed work becomes a historical method. Thoreau is no longer only describing woods; he is trying to recover their sequence, timing, and causal relations, almost as if Concord were a miniature geological record.
   - Book anchor: Chapter 24: In the Transcendental Graveyard (book.md:1745-1749) gives the October 19 stump-ring entry and Fuller's interpretation.
-  - Web context: Thoreau and conservation sources corroborate his late natural-history and ecology significance; Fuller supplies the exact journal date.
+  - Web context: Thoreau and ecological-succession sources corroborate his late natural-history and ecology significance; Fuller supplies the exact journal date.
 
 - **A golden October 1860 day - Thoreau studies lilies and pickerelweed at Beck Stow's farm.** Fuller sees this as one of Thoreau's strongest acceptances of lineal descent and geographic distribution. Check: web-confirmed context; Fuller supplies private journal scene. Book: F24. Web: W-Thoreau, W-Origin.
   - Lane: Thoreau seeds and death.
@@ -225,7 +243,7 @@ source for the public event, person, publication, or historical frame.
   - Lane: Thoreau seeds and death.
   - Evidence: This is the zoom's most compressed symbolic moment: the anniversary of Brown's death, Thoreau's Darwinian effort to read forest time, and the cold that will become his final decline all touch the same days.
   - Book anchor: Chapter 24: In the Transcendental Graveyard (book.md:1727-1735) sets the Fair Haven Hill walk against Brown's anniversary and Alcott's illness.
-  - Web context: Brown and Thoreau sources corroborate the public historical frame; conservation sources corroborate Thoreau's forest-succession importance.
+  - Web context: Brown and Thoreau sources corroborate the public historical frame; ecological-succession sources corroborate Thoreau's forest-succession importance.
 
 - **December 3, 1860 - Thoreau develops the cold or bronchitis that begins his final decline.** Fuller links the illness to his wet fieldwork and to the end of his Darwinian seed project. Check: web-confirmed context; Fuller supplies date and scene. Book: F24. Web: W-Thoreau, W-AmosBronsonAlcott.
   - Lane: Thoreau seeds and death.
@@ -245,11 +263,11 @@ source for the public event, person, publication, or historical frame.
   - Book anchor: Chapter 24: In the Transcendental Graveyard (book.md:1757-1760) places secession alongside Thoreau's illness.
   - Web context: South Carolina secession and election sources corroborate the date and national context.
 
-- **March 1861 - Thoreau explicitly rejects spontaneous generation in favor of seed causes still in operation.** Fuller treats the entry as a continuation of the lecture and the manuscript later published as *Faith in a Seed*. Check: web-confirmed context; Fuller supplies private journal date. Book: F24, F19. Web: W-Thoreau, W-ConservationUS, Wikisource-Succession.
+- **March 1861 - Thoreau explicitly rejects spontaneous generation in favor of seed causes still in operation.** Fuller treats the entry as a continuation of the lecture and the manuscript later published as *Faith in a Seed*. Check: web-confirmed context; Fuller supplies private journal date. Book: F24, F19. Web: W-Thoreau, W-EcologicalSuccession, Gutenberg-Succession.
   - Lane: Thoreau seeds and death.
   - Evidence: This is the cleanest "Faith in a Seed" moment inside the 1858-1862 window. Thoreau is clarifying that forests arise from causes, however slow and unobserved, and that accident itself can be part of natural history.
   - Book anchor: Chapter 24: In the Transcendental Graveyard (book.md:1751-1754) gives the March 1861 entry; Chapter 19 gives the lecture basis.
-  - Web context: Thoreau sources identify "The Dispersion of Seeds" as later published as *Faith in a Seed*; conservation and Wikisource sources corroborate the forest-succession context.
+  - Web context: Thoreau sources identify "The Dispersion of Seeds" as later published as *Faith in a Seed*; ecological-succession and Project Gutenberg sources corroborate the forest-succession context.
 
 - **April 12-13, 1861 - Fort Sumter is fired on and the Civil War begins.** Fuller follows the Concord circle into a war that had been foreshadowed by Brown, Sanborn, and the 1860 election. Check: web-confirmed. Book: F23, F24. Web: NPS-FortSumter, W-FortSumter.
   - Lane: National crisis.

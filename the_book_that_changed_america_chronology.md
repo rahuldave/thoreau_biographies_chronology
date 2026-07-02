@@ -59,16 +59,17 @@ Notes abbreviations and archival/source abbreviations: `book.md:1793-1845`.
 
 ## External Source Keys
 
-All web sources were checked on 2026-07-01.
+All web sources were checked on 2026-07-02.
 
 - [W-Origin](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) - Wikipedia, On the Origin of Species.
 - [DarwinOnline-Origin](https://darwin-online.org.uk/EditorialIntroductions/Freeman_OntheOriginofSpecies.html) - Darwin Online bibliography/introduction for On the Origin of Species.
 - [W-Darwin](https://en.wikipedia.org/wiki/Charles_Darwin) - Wikipedia, Charles Darwin.
 - [W-AsaGray](https://en.wikipedia.org/wiki/Asa_Gray) - Wikipedia, Asa Gray.
+- [Wired-GrayAgassiz](https://www.wired.com/2011/04/how-charles-darwin-seduced-asa-gray/) - David Dobbs, "How Charles Darwin Seduced Asa Gray," Wired.
 - [Atlantic-Gray1860](https://www.theatlantic.com/magazine/archive/1860/07/darwin-on-the-origin-of-species/304152/) - Asa Gray, "Darwin on the Origin of Species," The Atlantic, July 1860.
 - [W-JohnBrown](<https://en.wikipedia.org/wiki/John_Brown_(abolitionist)>) - Wikipedia, John Brown (abolitionist).
 - [W-JohnBrownRaid](https://en.wikipedia.org/wiki/John_Brown%27s_raid_on_Harpers_Ferry) - Wikipedia, John Brown's raid on Harpers Ferry.
-- [Battlefields-JohnBrown](https://www.battlefields.org/learn/articles/john-browns-harpers-ferry-raid) - American Battlefield Trust overview of John Brown's Harpers Ferry raid.
+- [NPS-JohnBrownRaid](https://www.nps.gov/articles/john-browns-raid.htm) - National Park Service, John Brown's Raid.
 - [W-PleaJohnBrown](https://en.wikipedia.org/wiki/A_Plea_for_Captain_John_Brown) - Wikipedia, A Plea for Captain John Brown.
 - [W-TrialJohnBrown](https://en.wikipedia.org/wiki/Trial_of_John_Brown) - Wikipedia, Trial of John Brown.
 - [W-RemarksJohnBrown](https://en.wikipedia.org/wiki/Remarks_After_the_Hanging_of_John_Brown) - Wikipedia, Remarks After the Hanging of John Brown.
@@ -111,7 +112,8 @@ All web sources were checked on 2026-07-01.
 - [W-AWeek](https://en.wikipedia.org/wiki/A_Week_on_the_Concord_and_Merrimack_Rivers) - Wikipedia, A Week on the Concord and Merrimack Rivers.
 - [W-ConcordSchool](https://en.wikipedia.org/wiki/Concord_School_of_Philosophy) - Wikipedia, Concord School of Philosophy.
 - [W-ConservationUS](https://en.wikipedia.org/wiki/Conservation_in_the_United_States) - Wikipedia, Conservation in the United States.
-- [Wikisource-Succession](https://en.wikisource.org/wiki/Excursions/The_Succession_of_Forest_Trees) - Wikisource, Thoreau's "The Succession of Forest Trees."
+- [W-EcologicalSuccession](https://en.wikipedia.org/wiki/Ecological_succession#History) - Wikipedia, Ecological succession, history.
+- [Gutenberg-Succession](https://www.gutenberg.org/cache/epub/9846/pg9846-images.html#chap06) - Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
 ## Public Date Checks
 
@@ -119,7 +121,9 @@ These are the main external date anchors used to keep the chronology sorted
 against chapter-order drift:
 
 - **November 24, 1859 - Origin is published.** Web-confirmed by W-Origin and DarwinOnline-Origin.
-- **October 16-18, 1859 - John Brown's Harpers Ferry raid.** Web-confirmed by W-JohnBrownRaid and Battlefields-JohnBrown.
+- **December 10, 1858 - Gray reads his Japan-North America plant-distribution paper in Cambridge.** Web-confirmed by Wired-GrayAgassiz.
+- **February-April 1859 - Gray and Agassiz debate species creation at Academy meetings.** Web-confirmed by Wired-GrayAgassiz.
+- **October 16-18, 1859 - John Brown's Harpers Ferry raid.** Web-confirmed by W-JohnBrownRaid and NPS-JohnBrownRaid.
 - **December 2, 1859 - Brown is hanged.** Web-confirmed by W-JohnBrownRaid.
 - **April 3, 1860 - Federal marshals attempt to arrest Sanborn.** Web-confirmed by W-Sanborn and W-SecretSix.
 - **April 23-May 3, 1860 - Charleston Democratic convention.** Web-confirmed by W-DemocraticConventions1860.
@@ -261,13 +265,17 @@ against chapter-order drift:
   - Book anchor: Chapter 5: Making a Stir (text book.md:451-500; notes book.md:2015-2066).
   - Web context: Wikipedia, Franklin Benjamin Sanborn.
 
-- **1857 - Thoreau's local natural-history work includes seed and plant-distribution experiments.** Fuller treats these as preparatory to Thoreau's unusually deep reception of Darwin in 1860. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F7, F14. Web: W-Thoreau, Wikisource-Succession.
+- **1857 - Thoreau's local natural-history work includes seed and plant-distribution experiments.** Fuller treats these as preparatory to Thoreau's unusually deep reception of Darwin in 1860. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F7, F14. Web: W-Thoreau, Gutenberg-Succession.
   - Book anchor: Chapter 7: The Nick of Time (text book.md:581-658; notes book.md:2141-2218); Chapter 14: A Jolt of Recognition (text book.md:1007-1078; notes book.md:2519-2566).
-  - Web context: Wikipedia, Henry David Thoreau; Wikisource, Thoreau's "The Succession of Forest Trees.".
+  - Web context: Wikipedia, Henry David Thoreau; Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
 - **1858 - Wallace sends Darwin the Ternate manuscript, prompting joint presentation of Darwin and Wallace's theory.** Fuller emphasizes Darwin's earlier Gray letter as part of the evidence protecting Darwin's priority. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F3. Web: W-Wallace, W-Darwin, W-Origin.
   - Book anchor: Chapter 3: Beetles, Birds, Theories (text book.md:319-372; notes book.md:1899-1936).
   - Web context: Wikipedia, Alfred Russel Wallace; Wikipedia, Charles Darwin; Wikipedia, On the Origin of Species.
+
+- **December 10, 1858 - Asa Gray reads his Japan-North America plant-distribution paper before the Cambridge Scientific Society.** The event belongs in the book chronology because it shows Gray using Darwinian descent before Origin and before the later public clash with Agassiz. Check: web-confirmed; Fuller supplies the Darwin-Gray plant-geography setup. Book: F3, F9, F11. Web: Wired-GrayAgassiz, W-AsaGray, W-Agassiz.
+  - Book anchor: Chapter 3: Beetles, Birds, Theories (text book.md:319-372; notes book.md:1899-1936); Chapter 9: Agassiz (text book.md:695-762; notes book.md:2239-2314); Chapter 11: A Spirited Conflict (text book.md:831-880; notes book.md:2383-2426).
+  - Web context: Wired's Gray/Agassiz account gives the December 10, 1858 Cambridge Scientific Society reading and its later American Academy Memoirs form; Asa Gray and Louis Agassiz sources corroborate the figures and their later Darwin dispute.
 
 - **1858-1859 - Sanborn helps John Brown through the Secret Six network.** Fuller makes Sanborn's Brown connection central to the emotional atmosphere in which Darwin's book arrives in Concord. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F5. Web: W-Sanborn, W-JohnBrownRaid.
   - Book anchor: Chapter 5: Making a Stir (text book.md:451-500; notes book.md:2015-2066).
@@ -275,13 +283,21 @@ against chapter-order drift:
 
 ### 1859: Origin, Harpers Ferry, and the Book's Arrival in America
 
+- **February-April 1859 - Gray and Agassiz debate plant geography, species creation, and Darwinian descent at Academy meetings.** The audit adds this as a missing precursor to the 1860 reception story: Gray had already begun testing Darwin's theory against Agassiz's special creationism before the book arrived. Check: web-confirmed; Fuller supplies the larger Gray/Agassiz conflict. Book: F3, F9, F11. Web: Wired-GrayAgassiz, W-AsaGray, W-Agassiz.
+  - Book anchor: Chapter 3: Beetles, Birds, Theories (text book.md:319-372; notes book.md:1899-1936); Chapter 9: Agassiz (text book.md:695-762; notes book.md:2239-2314); Chapter 11: A Spirited Conflict (text book.md:831-880; notes book.md:2383-2426).
+  - Web context: Wired describes three monthly Gray-Agassiz debates at Academy meetings in February, March, and April, plus a May Cambridge Scientific Club meeting; Wikipedia's Gray and Agassiz pages corroborate their Darwin dispute.
+
 - **June 1859 - Sanborn expects Brown's antislavery action to begin soon.** Fuller describes Sanborn's role in funding and secrecy before Harpers Ferry. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F5. Web: W-Sanborn, W-JohnBrownRaid.
   - Book anchor: Chapter 5: Making a Stir (text book.md:451-500; notes book.md:2015-2066).
   - Web context: Wikipedia, Franklin Benjamin Sanborn; Wikipedia, John Brown's raid on Harpers Ferry.
 
-- **October 16-18, 1859 - John Brown raids Harpers Ferry.** Fuller treats the raid as the immediate political shock reverberating through Concord when Origin arrives. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F1, F5, F7. Web: W-JohnBrownRaid, Battlefields-JohnBrown.
+- **October 16-18, 1859 - John Brown raids Harpers Ferry.** Fuller treats the raid as the immediate political shock reverberating through Concord when Origin arrives. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F1, F5, F7. Web: W-JohnBrownRaid, NPS-JohnBrownRaid.
   - Book anchor: Chapter 1: The Book from Across the Atlantic (text book.md:235-294; notes book.md:1847-1886); Chapter 5: Making a Stir (text book.md:451-500; notes book.md:2015-2066); Chapter 7: The Nick of Time (text book.md:581-658; notes book.md:2141-2218).
-  - Web context: Wikipedia, John Brown's raid on Harpers Ferry; American Battlefield Trust overview of John Brown's Harpers Ferry raid.
+  - Web context: Wikipedia, John Brown's raid on Harpers Ferry; National Park Service, John Brown's Raid.
+
+- **Late October 1859 - Sanborn burns compromising papers, consults John A. Andrew, and bolts to Quebec.** Fuller treats this first flight as the immediate consequence of Brown's captured correspondence, before the better-known January 1860 summons and second Canada flight. Check: web-confirmed context; Fuller supplies the Quebec sequence. Book: F5. Web: W-Sanborn, W-SecretSix, W-JohnBrownRaid.
+  - Book anchor: Chapter 5: Making a Stir (text book.md:451-500; notes book.md:2015-2066).
+  - Web context: The Secret Six source confirms Sanborn's absconding to Canada and Higginson's rebuke; Sanborn and Harpers Ferry sources corroborate why Brown's correspondence endangered him.
 
 - **October 30, 1859 - Thoreau first delivers "A Plea for Captain John Brown" in Concord.** Fuller treats the speech as decisive in shifting Northern abolitionist opinion toward Brown before Origin reaches the Concord circle. Check: web-confirmed; Fuller supplies book-specific placement. Book: F7. Web: W-PleaJohnBrown, W-Thoreau, W-JohnBrownRaid.
   - Book anchor: Chapter 7: The Nick of Time (text book.md:581-658; notes book.md:2141-2218).
@@ -295,9 +311,9 @@ against chapter-order drift:
   - Book anchor: Preface (text book.md:217-225); Chapter 1: The Book from Across the Atlantic (text book.md:235-294; notes book.md:1847-1886); Chapter 2: Gray's Botany (text book.md:295-318; notes book.md:1887-1898).
   - Web context: Wikipedia, On the Origin of Species; Darwin Online bibliography/introduction for On the Origin of Species.
 
-- **December 2, 1859 - John Brown is hanged.** Fuller begins the Concord story under the sign of Brown's execution and martyrdom. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F1, F5, F7. Web: W-JohnBrownRaid, Battlefields-JohnBrown.
+- **December 2, 1859 - John Brown is hanged.** Fuller begins the Concord story under the sign of Brown's execution and martyrdom. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F1, F5, F7. Web: W-JohnBrownRaid, NPS-JohnBrownRaid.
   - Book anchor: Chapter 1: The Book from Across the Atlantic (text book.md:235-294; notes book.md:1847-1886); Chapter 5: Making a Stir (text book.md:451-500; notes book.md:2015-2066); Chapter 7: The Nick of Time (text book.md:581-658; notes book.md:2141-2218).
-  - Web context: Wikipedia, John Brown's raid on Harpers Ferry; American Battlefield Trust overview of John Brown's Harpers Ferry raid.
+  - Web context: Wikipedia, John Brown's raid on Harpers Ferry; National Park Service, John Brown's Raid.
 
 - **December 2, 1859 - Thoreau gives "Remarks After the Hanging of John Brown" at Concord's memorial.** Fuller shows Thoreau, Emerson, Alcott, and Sanborn turning Brown's execution into a civic ritual of martyrdom. Check: web-confirmed; Fuller supplies memorial scene. Book: F7, F1. Web: W-RemarksJohnBrown, W-JohnBrownRaid, W-Thoreau.
   - Book anchor: Chapter 7: The Nick of Time (text book.md:581-658; notes book.md:2141-2218); Chapter 1: The Book from Across the Atlantic (text book.md:235-294; notes book.md:1847-1886).
@@ -397,9 +413,9 @@ against chapter-order drift:
   - Book anchor: Chapter 12: Into the Vortex (text book.md:881-958; notes book.md:2427-2476).
   - Web context: Wikipedia, Louisa May Alcott.
 
-- **Toward the end of March 1860 - Thoreau visits an Acton forest fire and rethinks destruction, regeneration, and slavery through natural process.** Fuller connects this episode to Thoreau's memory of his own 1844 fire and to Darwinian succession. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F15. Web: W-Thoreau, Wikisource-Succession.
+- **Toward the end of March 1860 - Thoreau visits an Acton forest fire and rethinks destruction, regeneration, and slavery through natural process.** Fuller connects this episode to Thoreau's memory of his own 1844 fire and to Darwinian succession. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F15. Web: W-Thoreau, Gutenberg-Succession.
   - Book anchor: Chapter 15: Wildfires (text book.md:1079-1178; notes book.md:2567-2602).
-  - Web context: Wikipedia, Henry David Thoreau; Wikisource, Thoreau's "The Succession of Forest Trees.".
+  - Web context: Wikipedia, Henry David Thoreau; Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
 - **April 3, 1860 - Federal marshals attempt to arrest Sanborn at home in Concord.** Fuller describes neighbors, alarm bells, legal resistance, and Thoreau guarding Sanborn's house that night. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F16. Web: W-Sanborn, W-JohnBrownRaid.
   - Book anchor: Chapter 16: Discord in Concord (text book.md:1187-1296; notes book.md:2603-2644).
@@ -421,9 +437,9 @@ against chapter-order drift:
   - Book anchor: Chapter 16: Discord in Concord (text book.md:1187-1296; notes book.md:2603-2644).
   - Web context: Wikipedia, 1860 Democratic National Conventions.
 
-- **Spring 1860 - Thoreau reorganizes years of phenological notes into large comparative tables.** Fuller sees Origin as a jolt that helps Thoreau transform raw observations into historical/ecological explanation. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F14. Web: W-Thoreau, Wikisource-Succession.
+- **Spring 1860 - Thoreau reorganizes years of phenological notes into large comparative tables.** Fuller sees Origin as a jolt that helps Thoreau transform raw observations into historical/ecological explanation. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F14. Web: W-Thoreau, Gutenberg-Succession.
   - Book anchor: Chapter 14: A Jolt of Recognition (text book.md:1007-1078; notes book.md:2519-2566).
-  - Web context: Wikipedia, Henry David Thoreau; Wikisource, Thoreau's "The Succession of Forest Trees.".
+  - Web context: Wikipedia, Henry David Thoreau; Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
 - **Spring-Summer 1860 - Gray prepares popular essays for The Atlantic.** Fuller treats these essays as Gray's effort to translate Darwin for general readers and to reconcile science with providential design. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F13, F21. Web: W-AsaGray, Atlantic-Gray1860.
   - Book anchor: Chapter 13: Tree of Life (text book.md:959-1006; notes book.md:2477-2518); Chapter 21: A Cold Shudder (text book.md:1495-1580; notes book.md:2807-2874).
@@ -476,21 +492,21 @@ against chapter-order drift:
   - Book anchor: Chapter 13: Tree of Life (text book.md:959-1006; notes book.md:2477-2518); Chapter 20: Races of the Old World (text book.md:1439-1494; notes book.md:2765-2806).
   - Web context: Wikipedia, Charles Loring Brace; Wikipedia, Frederick Douglass.
 
-- **Late September 1860 - Thoreau delivers "The Succession of Forest Trees" before the Middlesex Agricultural Society in Concord.** Fuller presents the lecture as Thoreau's clearest public Darwinian achievement: succession, dispersal, contingency, and ecological history without spontaneous generation. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F19. Web: W-Thoreau, Wikisource-Succession.
+- **Late September 1860 - Thoreau delivers "The Succession of Forest Trees" before the Middlesex Agricultural Society in Concord.** Fuller presents the lecture as Thoreau's clearest public Darwinian achievement: succession, dispersal, contingency, and ecological history without spontaneous generation. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F19. Web: W-Thoreau, W-EcologicalSuccession, Gutenberg-Succession.
   - Book anchor: Chapter 19: The Succession of Forest Trees (text book.md:1407-1438; notes book.md:2735-2764).
-  - Web context: Wikipedia, Henry David Thoreau; Wikisource, Thoreau's "The Succession of Forest Trees.".
+  - Web context: Wikipedia, Henry David Thoreau; Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
-- **Early October 1860 - Horace Greeley's New-York Tribune publishes "The Succession of Forest Trees" and challenges Thoreau about Maine birches.** Fuller uses Thoreau's reply to show his confidence that observation, seeds, and dispersal explain forest change. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F20. Web: W-Thoreau, Wikisource-Succession.
+- **Early October 1860 - Horace Greeley's New-York Tribune publishes "The Succession of Forest Trees" and challenges Thoreau about Maine birches.** Fuller uses Thoreau's reply to show his confidence that observation, seeds, and dispersal explain forest change. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F20. Web: W-Thoreau, Gutenberg-Succession.
   - Book anchor: Chapter 20: Races of the Old World (text book.md:1439-1494; notes book.md:2765-2806).
-  - Web context: Wikipedia, Henry David Thoreau; Wikisource, Thoreau's "The Succession of Forest Trees.".
+  - Web context: Wikipedia, Henry David Thoreau; Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
 - **October 1860 - Gray's third Atlantic essay, "Darwin and His Reviewers," argues that natural selection addresses order and method, not ultimate cause.** Fuller presents this as Gray's mature attempt to keep Darwinian science compatible with divine design. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F21. Web: W-AsaGray, W-Origin.
   - Book anchor: Chapter 21: A Cold Shudder (text book.md:1495-1580; notes book.md:2807-2874).
   - Web context: Wikipedia, Asa Gray; Wikipedia, On the Origin of Species.
 
-- **October 19, 1860 - Thoreau begins closely tracking tree stumps and rings around Concord.** Fuller connects this local dendrochronology to Thoreau's increasingly historical understanding of forests. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F24. Web: W-Thoreau, Wikisource-Succession.
+- **October 19, 1860 - Thoreau begins closely tracking tree stumps and rings around Concord.** Fuller connects this local dendrochronology to Thoreau's increasingly historical understanding of forests. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F24. Web: W-Thoreau, Gutenberg-Succession.
   - Book anchor: Chapter 24: In the Transcendental Graveyard (text book.md:1721-1782; notes book.md:2975-3026).
-  - Web context: Wikipedia, Henry David Thoreau; Wikisource, Thoreau's "The Succession of Forest Trees.".
+  - Web context: Wikipedia, Henry David Thoreau; Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
 - **A golden October 1860 day - Thoreau observes lilies and pickerelweed at Beck Stow's farm.** Fuller interprets this as one of Thoreau's clearest acceptances of lineal descent and geographic distribution, beyond the more cautious readings of Gray, Brace, Alcott, and Sanborn. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F24. Web: W-Thoreau, W-Origin.
   - Book anchor: Chapter 24: In the Transcendental Graveyard (text book.md:1721-1782; notes book.md:2975-3026).
@@ -522,9 +538,9 @@ against chapter-order drift:
   - Book anchor: Chapter 20: Races of the Old World (text book.md:1439-1494; notes book.md:2765-2806).
   - Web context: Wikipedia, Charles Loring Brace.
 
-- **March 1861 - Thoreau explicitly rejects spontaneous generation in forest succession.** Fuller treats this as part of Thoreau's continued Darwinian clarification after the 1860 lecture. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F24. Web: W-Thoreau, Wikisource-Succession.
+- **March 1861 - Thoreau explicitly rejects spontaneous generation in forest succession.** Fuller treats this as part of Thoreau's continued Darwinian clarification after the 1860 lecture. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F24. Web: W-Thoreau, W-EcologicalSuccession, Gutenberg-Succession.
   - Book anchor: Chapter 24: In the Transcendental Graveyard (text book.md:1721-1782; notes book.md:2975-3026).
-  - Web context: Wikipedia, Henry David Thoreau; Wikisource, Thoreau's "The Succession of Forest Trees.".
+  - Web context: Wikipedia, Henry David Thoreau; Project Gutenberg, Thoreau's "The Succession of Forest Trees."
 
 - **April 12-13, 1861 - Confederate forces fire on Fort Sumter and the Civil War begins.** Fuller later tracks the Alcotts, Sanborn, Brace, and Darwin's correspondents through the war that follows Origin's first American year. Check: web-confirmed context; Fuller supplies book-specific placement. Book: F23. Web: NPS-FortSumter, W-FortSumter.
   - Book anchor: Chapter 23: The Ghost of John Brown (text book.md:1657-1720; notes book.md:2933-2974).

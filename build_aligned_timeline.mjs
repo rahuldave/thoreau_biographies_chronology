@@ -4,6 +4,9 @@ import path from "node:path";
 const ROOT = new URL(".", import.meta.url).pathname;
 const OUTPUT = path.join(ROOT, "aligned_chronologies.html");
 const BOOK_LINE_ANCHORS = JSON.parse(fs.readFileSync(path.join(ROOT, "book_line_anchors.json"), "utf8"));
+const WEB_SOURCE_ANCHOR_RULES = JSON.parse(
+  fs.readFileSync(path.join(ROOT, "web_source_anchor_rules.json"), "utf8"),
+);
 
 const CLOSE_READING_BOOK_ID = 125;
 const CLOSE_READING_CHAPTER_BASE = `https://closereading.rahuldave.us/books/${CLOSE_READING_BOOK_ID}/chapters`;
@@ -284,9 +287,84 @@ function bookAnchorsFromDetails(details) {
   return anchors;
 }
 
+function sourceTokensFromText(text) {
+  if (!text) return [];
+  const matches = text.match(/\b(?:F\d+|FPref|[A-Z][A-Za-z]+(?:-[A-Za-z0-9]+)+|W-[A-Za-z0-9]+)\b/g);
+  return [...new Set(matches || [])];
+}
+
+function enrichWebAnchors(entries, sources) {
+  return entries.map((entry) => ({
+    ...entry,
+    webAnchors: webAnchorsForEntry(entry, sources),
+  }));
+}
+
+function webAnchorsForEntry(entry, sources) {
+  const anchors = [];
+  const seen = new Set();
+  const haystack = [
+    entry.dateLabel,
+    entry.title,
+    entry.summary,
+    entry.check,
+    entry.sources,
+    ...entry.details,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  for (const token of sourceTokensFromText(entry.sources)) {
+    const source = sources[token];
+    const rules = WEB_SOURCE_ANCHOR_RULES[token];
+    if (!source || source.kind !== "web" || !Array.isArray(rules)) continue;
+
+    for (const rule of rules) {
+      if (!anchorRuleMatches(rule, haystack)) continue;
+      const href = anchoredHref(source.href, rule.href || rule.anchor);
+      const key = `${token}:${href}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      anchors.push({
+        href,
+        display: `${source.display || source.description || token} - ${rule.label || "relevant section"}`,
+        description: `${source.description || source.display || token}; nearest stable section: ${
+          rule.label || rule.anchor || rule.href
+        }`,
+        kind: "web-anchor",
+        sourceKey: token,
+      });
+    }
+  }
+
+  return anchors;
+}
+
+function anchorRuleMatches(rule, haystack) {
+  if (rule.always) return true;
+  if (!Array.isArray(rule.match)) return false;
+  return rule.match.some((term) => haystack.includes(String(term).toLowerCase()));
+}
+
+function anchoredHref(baseHref, anchor) {
+  if (!anchor) return baseHref;
+  if (/^https?:\/\//i.test(anchor)) return anchor;
+  const url = new URL(baseHref);
+  url.hash = anchor.startsWith("#") ? anchor.slice(1) : anchor;
+  return url.toString();
+}
+
 function bookAnchorForLineRange(lineRange) {
   const [start, end = start] = lineRange.split("-").map((value) => Number(value));
-  return BOOK_LINE_ANCHORS[`${start}-${end}`];
+  const exact = BOOK_LINE_ANCHORS[`${start}-${end}`];
+  if (exact) return exact;
+  return Object.entries(BOOK_LINE_ANCHORS)
+    .map(([range, anchor]) => {
+      const [rangeStart, rangeEnd = rangeStart] = range.split("-").map((value) => Number(value));
+      return { rangeStart, rangeEnd, anchor };
+    })
+    .find(({ rangeStart, rangeEnd }) => rangeStart <= start && rangeEnd >= end)?.anchor;
 }
 
 function formatAnchorChapterTitle(anchor) {
@@ -520,7 +598,7 @@ const chronologies = CHRONOLOGY_FILES.map((config) => {
   const markdown = readLocal(config.file);
   return {
     ...config,
-    entries: parseChronology(markdown, config.id),
+    entries: enrichWebAnchors(parseChronology(markdown, config.id), sources),
   };
 });
 
@@ -539,7 +617,7 @@ for (const entry of allEntries) {
 const focusMarkdown = readLocal(FOCUS_CHRONOLOGY.file);
 const focusChronology = {
   ...FOCUS_CHRONOLOGY,
-  entries: parseChronology(focusMarkdown, FOCUS_CHRONOLOGY.id),
+  entries: enrichWebAnchors(parseChronology(focusMarkdown, FOCUS_CHRONOLOGY.id), sources),
 };
 const focusEventsPerYear = {};
 for (const entry of focusChronology.entries) {
@@ -1626,7 +1704,7 @@ function renderHtml(data) {
       drawerTitle.textContent = entry.title;
       drawerSummary.innerHTML = "";
       const paragraphs = [];
-      if (entry.summary) paragraphs.push(entry.summary);
+      if (entry.summary) paragraphs.push("Summary: " + entry.summary);
       paragraphs.push(...entry.details.filter((detail) => !detail.startsWith("Lane:")));
       if (!paragraphs.length) paragraphs.push("No additional note beyond the dated event.");
       for (const paragraph of paragraphs) {
@@ -1645,14 +1723,20 @@ function renderHtml(data) {
       drawerCheck.textContent = entry.check ? "Check: " + entry.check : "";
       drawerSources.innerHTML = "";
       const preciseBookSources = entry.bookAnchors || [];
+      const preciseWebSources = entry.webAnchors || [];
+      const anchoredWebSourceKeys = new Set(preciseWebSources.map((source) => source.sourceKey));
       const seenHrefs = new Set();
       for (const source of preciseBookSources) {
+        appendSourceLink(source, seenHrefs);
+      }
+      for (const source of preciseWebSources) {
         appendSourceLink(source, seenHrefs);
       }
       for (const token of sourceTokens(entry.sources)) {
         const source = MODEL.sources[token];
         if (source) {
           if (preciseBookSources.length && source.kind === "book") continue;
+          if (anchoredWebSourceKeys.has(token) && source.kind === "web") continue;
           appendSourceLink(source, seenHrefs, token);
         } else {
           const span = document.createElement("span");

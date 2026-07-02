@@ -16,6 +16,8 @@ Changed America: How Darwin's Theory of Evolution Ignited a Nation*.
 - `build_aligned_timeline.mjs` - generator for the HTML view.
 - `book_line_anchors.json` - generated map from cited `book.md` line ranges
   to Close Reading chapter/cell anchors.
+- `web_source_anchor_rules.json` - checked rules for linking external source
+  chips to stable page sections when the cited source has useful anchors.
 - `.nojekyll` - tells GitHub Pages to serve this static site as-is.
 - `index.html` - redirects the Pages root to the generated timeline.
 
@@ -46,6 +48,12 @@ cells at `https://closereading.rahuldave.us/books/125/chapters/...#cell-N`
 when a cited `book.md` line range can be mapped to a cell. The chip text also
 preserves the local `book.md` line reference and shows the corresponding
 Close Reading block range such as `b0003-b0028`.
+
+External source chips use the current URL listed in the main chronology. When a
+stable section anchor is available and relevant to the event, the generator uses
+`web_source_anchor_rules.json` to link to that nearer section; pages without
+durable anchors remain page-level links. The current source list and configured
+anchors were live-checked on 2026-07-02.
 
 Citation and date-check conventions are defined in the main chronology:
 

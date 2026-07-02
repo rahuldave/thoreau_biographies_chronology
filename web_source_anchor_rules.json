@@ -1,0 +1,408 @@
+{
+  "W-Origin": [
+    {
+      "anchor": "#Summary_of_Darwin.27s_theory",
+      "label": "summary of Darwin's theory",
+      "match": ["natural selection", "struggle", "common descent", "variation", "selection"]
+    },
+    {
+      "anchor": "#Joint_publication_of_papers_by_Wallace_and_Darwin",
+      "label": "Darwin-Wallace joint publication",
+      "match": ["Wallace", "Ternate", "Linnean", "joint"]
+    },
+    {
+      "anchor": "#Publication",
+      "label": "publication",
+      "match": ["published in London", "London copy", "Gray's copy", "receives Origin", "published"]
+    },
+    {
+      "anchor": "#Publication_outside_Great_Britain",
+      "label": "publication outside Great Britain",
+      "match": ["American edition", "Appleton", "America", "United States"]
+    },
+    {
+      "anchor": "#Impact_on_the_scientific_community",
+      "label": "scientific reception",
+      "match": ["Agassiz", "Gray", "Academy", "scientific", "Harvard"]
+    },
+    {
+      "anchor": "#Religious_attitudes",
+      "label": "religious attitudes",
+      "match": ["design", "theology", "religion", "providential"]
+    }
+  ],
+  "W-Darwin": [
+    {
+      "anchor": "#Survey_voyage_on_HMS_Beagle",
+      "label": "HMS Beagle voyage",
+      "match": ["Beagle", "Voyage"]
+    },
+    {
+      "anchor": "#Malthus_and_natural_selection",
+      "label": "Malthus and natural selection",
+      "match": ["Malthus", "struggle", "natural selection"]
+    },
+    {
+      "anchor": "#Publication_of_the_theory_of_natural_selection",
+      "label": "publication of natural selection",
+      "match": ["Wallace", "Linnean", "Origin", "publication", "published"]
+    },
+    {
+      "anchor": "#Responses_to_publication",
+      "label": "responses to publication",
+      "match": ["reception", "Gray", "Agassiz", "defends", "debate"]
+    },
+    {
+      "anchor": "#Descent_of_Man.2C_sexual_selection.2C_and_botany",
+      "label": "Descent of Man, sexual selection, and botany",
+      "match": ["Descent of Man", "human evolution", "botany", "Variation"]
+    }
+  ],
+  "W-AsaGray": [
+    {
+      "anchor": "#.22Asa_Gray_disjunction.22",
+      "label": "Asa Gray disjunction",
+      "match": ["Japan", "plant-distribution", "plant geography", "disjunction"]
+    },
+    {
+      "anchor": "#Relationship_with_Darwin",
+      "label": "relationship with Darwin",
+      "match": ["Darwin", "Origin", "natural selection", "design", "Variation"]
+    },
+    {
+      "anchor": "#Harvard_professor",
+      "label": "Harvard professor",
+      "match": ["Harvard", "Cambridge", "Academy"]
+    }
+  ],
+  "W-Agassiz": [
+    {
+      "anchor": "#United_States",
+      "label": "United States career",
+      "match": ["United States", "Harvard", "Cambridge", "Academy", "Saturday Club"]
+    },
+    {
+      "anchor": "#Polygenism_and_racism",
+      "label": "polygenism and racism",
+      "match": ["race", "polygenism", "fixed species", "creation", "separate creations"]
+    },
+    {
+      "anchor": "#Legacy",
+      "label": "legacy",
+      "match": ["anti-Darwin", "opposes Darwin", "resists Darwin", "Agassiz resists"]
+    }
+  ],
+  "W-JohnBrown": [
+    {
+      "anchor": "#Actions_in_Kansas",
+      "label": "actions in Kansas",
+      "match": ["Kansas", "Pottawatomie", "Osawatomie", "Bleeding"]
+    },
+    {
+      "anchor": "#Financial_and_political_backing",
+      "label": "financial and political backing",
+      "match": ["Secret Six", "Sanborn", "support network", "supporters", "summons", "arrest"]
+    },
+    {
+      "anchor": "#Raid_at_Harpers_Ferry",
+      "label": "raid at Harpers Ferry",
+      "match": ["Harpers Ferry", "raid", "armory"]
+    },
+    {
+      "anchor": "#Trial",
+      "label": "trial",
+      "match": ["trial", "sentenced", "sentence", "court"]
+    },
+    {
+      "anchor": "#Last_words.2C_death_and_aftermath",
+      "label": "death and aftermath",
+      "match": ["hanged", "hanging", "execution", "martyr", "memorial"]
+    },
+    {
+      "anchor": "#Legacy",
+      "label": "legacy",
+      "match": ["Emancipation", "memory", "honors", "Life and Letters", "legacy"]
+    }
+  ],
+  "W-JohnBrownRaid": [
+    {
+      "anchor": "#Advance_knowledge_of_the_raid",
+      "label": "advance knowledge of the raid",
+      "match": ["Secret Six", "Sanborn", "support", "summons", "Canada", "Quebec"]
+    },
+    {
+      "anchor": "#Timeline_of_the_raid",
+      "label": "timeline of the raid",
+      "match": ["October 16", "October 17", "October 18", "Harpers Ferry", "raid"]
+    },
+    {
+      "anchor": "#Trial_and_execution",
+      "label": "trial and execution",
+      "match": ["trial", "sentenced", "hanged", "hanging", "execution"]
+    },
+    {
+      "anchor": "#Legacy",
+      "label": "legacy",
+      "match": ["martyr", "Civil War", "Emancipation", "memory", "legacy"]
+    }
+  ],
+  "W-SecretSix": [
+    {
+      "anchor": "#Involvement_with_John_Brown",
+      "label": "involvement with John Brown",
+      "match": ["Brown", "support", "Sanborn", "Secret Six", "raid"]
+    },
+    {
+      "anchor": "#Aftermath",
+      "label": "aftermath",
+      "match": ["after", "arrest", "summons", "fled", "Canada", "Quebec", "handcuffs"]
+    }
+  ],
+  "W-Thoreau": [
+    {
+      "anchor": "#.22Civil_Disobedience.22_and_the_Walden_years.2C_1845.E2.80.931850",
+      "label": "Civil Disobedience and Walden years",
+      "match": ["Walden", "poll tax", "Civil Disobedience", "Resistance to Civil Government"]
+    },
+    {
+      "anchor": "#Politics",
+      "label": "politics",
+      "match": ["John Brown", "Plea", "Remarks", "Slavery", "abolition", "Sanborn", "handcuffs", "Lincoln"]
+    },
+    {
+      "anchor": "#Biology",
+      "label": "biology",
+      "match": ["Darwin", "Origin", "seeds", "forest", "succession", "natural-history", "Beagle", "Wild Apples"]
+    },
+    {
+      "anchor": "#Tuberculosis_and_death",
+      "label": "tuberculosis and death",
+      "match": ["tuberculosis", "death", "dies", "bronchitis", "illness", "Milwaukee", "papers"]
+    },
+    {
+      "anchor": "#Later_years.2C_1851.E2.80.931862",
+      "label": "later years",
+      "match": ["1851", "1854", "journal", "final", "Concord library"]
+    }
+  ],
+  "W-AmosBronsonAlcott": [
+    {
+      "anchor": "#Experimental_educator",
+      "label": "experimental educator",
+      "match": ["Temple School", "Record of a School", "Gospels", "education", "superintendent"]
+    },
+    {
+      "anchor": "#Transcendentalist",
+      "label": "Transcendentalist",
+      "match": ["Transcendentalist", "Emerson", "Concord", "Saturday Club", "Origin dinner"]
+    },
+    {
+      "anchor": "#Fruitlands",
+      "label": "Fruitlands",
+      "match": ["Fruitlands", "Charles Lane"]
+    },
+    {
+      "anchor": "#Civil_War_years_and_beyond",
+      "label": "Civil War years and beyond",
+      "match": ["John Brown", "Civil War", "Tablets", "Concord Days", "Concord School"]
+    },
+    {
+      "anchor": "#Final_years",
+      "label": "final years",
+      "match": ["stroke", "dies", "death"]
+    }
+  ],
+  "W-Brace": [
+    {
+      "anchor": "#Early_life",
+      "label": "early life",
+      "match": ["born", "Yale", "Belfast", "marries"]
+    },
+    {
+      "anchor": "#Career",
+      "label": "career",
+      "match": ["New York", "Five Points", "Blackwell", "Children's Aid", "reform", "poverty"]
+    },
+    {
+      "anchor": "#Fostering_and_the_.22Orphan_Trains.22",
+      "label": "fostering and orphan trains",
+      "match": ["orphan train", "newsboys", "placing children", "Midwest"]
+    },
+    {
+      "anchor": "#Emigration_Plan",
+      "label": "emigration plan",
+      "match": ["relocation", "placed with families", "outside New York"]
+    },
+    {
+      "anchor": "#Legacy",
+      "label": "legacy",
+      "match": ["dies", "Dangerous Classes", "legacy"]
+    }
+  ],
+  "W-Emerson": [
+    {
+      "anchor": "#Literary_career_and_Transcendentalism",
+      "label": "literary career and Transcendentalism",
+      "match": ["Nature", "American Scholar", "Divinity School", "Essays", "Transcendental", "journal"]
+    },
+    {
+      "anchor": "#Race_and_slavery",
+      "label": "race and slavery",
+      "match": ["John Brown", "Sanborn", "abolition", "slavery", "Emancipation"]
+    },
+    {
+      "anchor": "#Civil_War_years",
+      "label": "Civil War years",
+      "match": ["Civil War", "Lincoln", "Emancipation", "Thoreau dies", "eulogy"]
+    },
+    {
+      "anchor": "#Final_years_and_death",
+      "label": "final years and death",
+      "match": ["memory", "fire", "pneumonia", "dies", "death"]
+    }
+  ],
+  "W-KansasNebraska": [
+    {
+      "anchor": "#Bleeding_Kansas",
+      "label": "Bleeding Kansas",
+      "match": ["Bleeding Kansas", "violence", "Brown"]
+    },
+    {
+      "anchor": "#Enactment",
+      "label": "enactment",
+      "match": ["Kansas-Nebraska Act", "popular sovereignty"]
+    }
+  ],
+  "W-BleedingKansas": [
+    {
+      "anchor": "#Summer_of_1856",
+      "label": "summer of 1856",
+      "match": ["1856", "Pottawatomie", "Osawatomie"]
+    },
+    {
+      "anchor": "#Open_violence",
+      "label": "open violence",
+      "match": ["violence", "militant", "armed"]
+    },
+    {
+      "anchor": "#Kansas_admitted_as_a_free_state",
+      "label": "Kansas admitted as a free state",
+      "match": ["free state", "admitted"]
+    }
+  ],
+  "W-FugitiveSlaveAct1850": [
+    {
+      "anchor": "#Resistance_in_the_North_and_other_consequences",
+      "label": "Northern resistance and consequences",
+      "match": ["resistance", "North", "fugitive", "slave"]
+    }
+  ],
+  "W-DemocraticConventions1860": [
+    {
+      "anchor": "#Charleston_convention",
+      "label": "Charleston convention",
+      "match": ["Charleston"]
+    },
+    {
+      "anchor": "#Party_platform_disputes",
+      "label": "party platform disputes",
+      "match": ["platform", "slavery", "split"]
+    },
+    {
+      "anchor": "#Consequences",
+      "label": "consequences",
+      "match": ["consequences", "election", "Lincoln"]
+    }
+  ],
+  "W-Election1860": [
+    {
+      "anchor": "#Political_considerations",
+      "label": "political considerations",
+      "match": ["Lincoln", "sectional", "disunion"]
+    },
+    {
+      "anchor": "#Results",
+      "label": "results",
+      "match": ["wins", "votes", "election", "November 6"]
+    },
+    {
+      "anchor": "#Trigger_for_the_Civil_War",
+      "label": "trigger for the Civil War",
+      "match": ["secession", "Civil War"]
+    }
+  ],
+  "W-SCSecession": [
+    {
+      "anchor": "#Background",
+      "label": "background",
+      "match": ["Lincoln", "slavery", "South Carolina"]
+    },
+    {
+      "anchor": "#Synopsis",
+      "label": "synopsis",
+      "match": ["secedes", "secession"]
+    }
+  ],
+  "W-FortSumter": [
+    {
+      "anchor": "#Background",
+      "label": "background",
+      "match": ["secession", "Charleston"]
+    },
+    {
+      "anchor": "#Bombardment",
+      "label": "bombardment",
+      "match": ["bombardment", "April 12", "April 13", "Fort Sumter"]
+    },
+    {
+      "anchor": "#Aftermath",
+      "label": "aftermath",
+      "match": ["Civil War", "after"]
+    }
+  ],
+  "W-EcologicalSuccession": [
+    {
+      "anchor": "#History",
+      "label": "history",
+      "match": ["spontaneous generation", "history", "succession"]
+    },
+    {
+      "anchor": "#Forest_succession",
+      "label": "forest succession",
+      "match": ["forest", "trees", "seeds", "fire", "regeneration"]
+    }
+  ],
+  "W-LouisaAlcott": [
+    {
+      "anchor": "#Abolition",
+      "label": "abolition",
+      "match": ["abolition", "antislavery", "M. L.", "race", "miscegenation"]
+    },
+    {
+      "anchor": "#Literary_success",
+      "label": "literary success",
+      "match": ["Little Women", "Moods", "Atlantic", "fiction", "novel"]
+    }
+  ],
+  "W-Wallace": [
+    {
+      "anchor": "#Natural_selection_and_Darwin",
+      "label": "natural selection and Darwin",
+      "match": ["Darwin", "Ternate", "natural selection", "Down House"]
+    }
+  ],
+  "W-ConcordSchool": [
+    {
+      "anchor": "#History",
+      "label": "history",
+      "match": ["prospectus", "opens", "Hillside Chapel", "secretary"]
+    }
+  ],
+  "Gutenberg-Succession": [
+    {
+      "anchor": "#chap06",
+      "label": "The Succession of Forest Trees",
+      "always": true
+    }
+  ]
+}
