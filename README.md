@@ -14,6 +14,8 @@ Changed America: How Darwin's Theory of Evolution Ignited a Nation*.
 - `crisis_1858_1862_chronology.md` - focused close-up for the crowded Brown/Origin/Sanborn/Thoreau interval.
 - `aligned_chronologies.html` - interactive aligned timeline view with a full tab and an 1858-1862 zoom tab.
 - `build_aligned_timeline.mjs` - generator for the HTML view.
+- `book_line_anchors.json` - generated map from cited `book.md` line ranges
+  to Close Reading chapter/cell anchors.
 - `.nojekyll` - tells GitHub Pages to serve this static site as-is.
 - `index.html` - redirects the Pages root to the generated timeline.
 
@@ -39,10 +41,11 @@ national-crisis lanes. The zoom tab has its own lane toggles and a looser
 vertical year scale so the crowded 1859-1860 interval remains aligned but
 readable.
 
-Book source chips in the drawer link to the authenticated Close Reading chapter
-pages at `https://closereading.rahuldave.us/books/125/chapters/...`; the chip
-text also preserves the local `book.md` line anchor used while building the
-chronologies.
+Book source chips in the drawer link to authenticated Close Reading chapter
+cells at `https://closereading.rahuldave.us/books/125/chapters/...#cell-N`
+when a cited `book.md` line range can be mapped to a cell. The chip text also
+preserves the local `book.md` line reference and shows the corresponding
+Close Reading block range such as `b0003-b0028`.
 
 Citation and date-check conventions are defined in the main chronology:
 

@@ -3,6 +3,7 @@ import path from "node:path";
 
 const ROOT = new URL(".", import.meta.url).pathname;
 const OUTPUT = path.join(ROOT, "aligned_chronologies.html");
+const BOOK_LINE_ANCHORS = JSON.parse(fs.readFileSync(path.join(ROOT, "book_line_anchors.json"), "utf8"));
 
 const CLOSE_READING_BOOK_ID = 125;
 const CLOSE_READING_CHAPTER_BASE = `https://closereading.rahuldave.us/books/${CLOSE_READING_BOOK_ID}/chapters`;
@@ -158,16 +159,20 @@ function sourceKeyMap(markdown) {
     }
     const book = line.match(/^\| (F[^| ]+) \| ([^|]+) \| `book\.md:([^`]+)` \|/);
     if (book) {
-      const lineNumber = book[3].split("-")[0];
+      const lineRange = book[3];
+      const lineNumber = lineRange.split("-")[0];
       const description = book[2].trim();
       const chapterId = CLOSE_READING_CHAPTER_IDS[book[1]];
       if (!chapterId) {
         throw new Error(`Missing Close Reading chapter id for ${book[1]}`);
       }
+      const anchor = bookAnchorForLineRange(lineRange);
       map[book[1]] = {
-        href: `${CLOSE_READING_CHAPTER_BASE}/${chapterId}`,
+        href: anchor ? anchor.start.href : `${CLOSE_READING_CHAPTER_BASE}/${chapterId}`,
         label: book[1],
-        display: `${formatChapterReference(description)} (Close Reading chapter ${chapterId}; book.md:${lineNumber})`,
+        display: anchor
+          ? `${formatChapterReference(description)}, ${cellRangeLabel(anchor)} (book.md:${lineRange})`
+          : `${formatChapterReference(description)} (Close Reading chapter ${chapterId}; book.md:${lineNumber})`,
         description,
         lineNumber,
         chapterId,
@@ -237,6 +242,7 @@ function parseChronology(markdown, chronoId) {
       title,
       summary: meta.summary,
       details,
+      bookAnchors: bookAnchorsFromDetails(details),
       check: meta.check,
       sources: meta.sources,
       start: dates.start,
@@ -246,6 +252,57 @@ function parseChronology(markdown, chronoId) {
   }
 
   return entries;
+}
+
+function bookAnchorsFromDetails(details) {
+  const anchors = [];
+  const seen = new Set();
+  for (const detail of details) {
+    if (!detail.includes("book.md:")) continue;
+    for (const match of detail.matchAll(/book\.md:(\d+)(?:-(\d+))?/g)) {
+      const lineRange = `${match[1]}-${match[2] || match[1]}`;
+      const anchor = bookAnchorForLineRange(lineRange);
+      if (!anchor) {
+        throw new Error(`Missing cell anchor for book.md:${lineRange}`);
+      }
+      const key = `${lineRange}:${anchor.start.href}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      anchors.push({
+        href: anchor.start.href,
+        display: `${formatAnchorChapterTitle(anchor)}, ${cellRangeLabel(anchor)} (book.md:${lineRange})`,
+        description: `${formatAnchorChapterTitle(anchor)} ${cellRangeLabel(anchor)}; ${anchor.start.sameBookRef}`,
+        lineStart: anchor.lineStart,
+        lineEnd: anchor.lineEnd,
+        cellStart: anchor.start.cellIndex,
+        cellEnd: anchor.end.cellIndex,
+        chapterId: anchor.start.chapterId,
+        kind: "book-cell",
+      });
+    }
+  }
+  return anchors;
+}
+
+function bookAnchorForLineRange(lineRange) {
+  const [start, end = start] = lineRange.split("-").map((value) => Number(value));
+  return BOOK_LINE_ANCHORS[`${start}-${end}`];
+}
+
+function formatAnchorChapterTitle(anchor) {
+  const title = anchor.start.chapterTitle;
+  const chapter = title.match(/^(\d+):\s*(.+)$/);
+  return chapter ? `Chapter ${chapter[1]}: ${chapter[2]}` : title;
+}
+
+function cellRangeLabel(anchor) {
+  const start = blockLabel(anchor.start);
+  const end = blockLabel(anchor.end);
+  return start === end ? start : `${start}-${end}`;
+}
+
+function blockLabel(cell) {
+  return cell.sameBookRef.split("/").at(-1);
 }
 
 function parseMeta(text) {
@@ -1587,16 +1644,16 @@ function renderHtml(data) {
       }
       drawerCheck.textContent = entry.check ? "Check: " + entry.check : "";
       drawerSources.innerHTML = "";
+      const preciseBookSources = entry.bookAnchors || [];
+      const seenHrefs = new Set();
+      for (const source of preciseBookSources) {
+        appendSourceLink(source, seenHrefs);
+      }
       for (const token of sourceTokens(entry.sources)) {
         const source = MODEL.sources[token];
         if (source) {
-          const a = document.createElement("a");
-          a.href = source.href;
-          a.target = source.href.startsWith("http") ? "_blank" : "_self";
-          a.rel = "noreferrer";
-          a.textContent = source.kind === "book" ? source.display : source.display || source.description || token;
-          a.title = source.description;
-          drawerSources.append(a);
+          if (preciseBookSources.length && source.kind === "book") continue;
+          appendSourceLink(source, seenHrefs, token);
         } else {
           const span = document.createElement("span");
           span.textContent = token;
@@ -1604,6 +1661,18 @@ function renderHtml(data) {
         }
       }
       drawer.hidden = false;
+    }
+
+    function appendSourceLink(source, seenHrefs, fallbackLabel = "") {
+      if (seenHrefs.has(source.href)) return;
+      seenHrefs.add(source.href);
+      const a = document.createElement("a");
+      a.href = source.href;
+      a.target = source.href.startsWith("http") ? "_blank" : "_self";
+      a.rel = "noreferrer";
+      a.textContent = source.kind === "book" || source.kind === "book-cell" ? source.display : source.display || source.description || fallbackLabel;
+      a.title = source.description || source.display || fallbackLabel;
+      drawerSources.append(a);
     }
 
     function sourceTokens(text) {
