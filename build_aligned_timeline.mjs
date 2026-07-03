@@ -7,6 +7,9 @@ const BOOK_LINE_ANCHORS = JSON.parse(fs.readFileSync(path.join(ROOT, "book_line_
 const WEB_SOURCE_ANCHOR_RULES = JSON.parse(
   fs.readFileSync(path.join(ROOT, "web_source_anchor_rules.json"), "utf8"),
 );
+const LOCATION_ANCHOR_RULES = JSON.parse(
+  fs.readFileSync(path.join(ROOT, "location_anchor_rules.json"), "utf8"),
+);
 
 const CLOSE_READING_BOOK_ID = 125;
 const CLOSE_READING_CHAPTER_BASE = `https://closereading.rahuldave.us/books/${CLOSE_READING_BOOK_ID}/chapters`;
@@ -297,6 +300,25 @@ function enrichWebAnchors(entries, sources) {
   return entries.map((entry) => ({
     ...entry,
     webAnchors: webAnchorsForEntry(entry, sources),
+  }));
+}
+
+function enrichLocationLinks(entries) {
+  return entries.map((entry) => ({
+    ...entry,
+    locationLinks: locationLinksForEntry(entry),
+  }));
+}
+
+function locationLinksForEntry(entry) {
+  const links = LOCATION_ANCHOR_RULES.events?.[entry.id] || [];
+  const baseUrl = LOCATION_ANCHOR_RULES.atlas_base_url;
+  return links.map((link) => ({
+    href: link.href || `${baseUrl}?place=${encodeURIComponent(link.place_id)}`,
+    display: link.label || link.place_id,
+    description: link.note || `Location atlas record for ${link.label || link.place_id}`,
+    placeId: link.place_id,
+    kind: "location",
   }));
 }
 
@@ -598,7 +620,7 @@ const chronologies = CHRONOLOGY_FILES.map((config) => {
   const markdown = readLocal(config.file);
   return {
     ...config,
-    entries: enrichWebAnchors(parseChronology(markdown, config.id), sources),
+    entries: enrichLocationLinks(enrichWebAnchors(parseChronology(markdown, config.id), sources)),
   };
 });
 
@@ -617,7 +639,7 @@ for (const entry of allEntries) {
 const focusMarkdown = readLocal(FOCUS_CHRONOLOGY.file);
 const focusChronology = {
   ...FOCUS_CHRONOLOGY,
-  entries: enrichWebAnchors(parseChronology(focusMarkdown, FOCUS_CHRONOLOGY.id), sources),
+  entries: enrichLocationLinks(enrichWebAnchors(parseChronology(focusMarkdown, FOCUS_CHRONOLOGY.id), sources)),
 };
 const focusEventsPerYear = {};
 for (const entry of focusChronology.entries) {
@@ -643,6 +665,172 @@ const model = {
 
 fs.writeFileSync(OUTPUT, renderHtml(model), "utf8");
 console.log(OUTPUT);
+writeChronologyPages(chronologies, focusChronology, sources);
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function writeChronologyPages(chronologies, focusChronology, sources) {
+  for (const chronology of [...chronologies, focusChronology]) {
+    const output = path.join(ROOT, chronology.file.replace(/\.md$/, ".html"));
+    fs.writeFileSync(output, renderChronologyPage(chronology, sources), "utf8");
+    console.log(output);
+  }
+}
+
+function renderChronologyPage(chronology, sources) {
+  const eventHtml = chronology.entries.map((entry) => renderChronologyEntry(chronology, entry, sources)).join("\n");
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHtml(chronology.title)} Chronology</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #22262a;
+      --muted: #606973;
+      --line: #ded7ca;
+      --paper: #f8f6f0;
+      --panel: #fffdf8;
+      --accent: ${chronology.color || "#315f8f"};
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 15px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.96);
+    }
+    main { max-width: 980px; margin: 0 auto; padding: 22px; }
+    h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: 0; }
+    .subtle { color: var(--muted); }
+    a { color: #255f85; font-weight: 700; text-decoration: none; }
+    .event {
+      margin: 16px 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--accent);
+      border-radius: 6px;
+      background: var(--panel);
+      scroll-margin-top: 92px;
+    }
+    .event:target {
+      outline: 3px solid color-mix(in srgb, var(--accent) 28%, transparent);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9);
+    }
+    time { display: block; color: var(--accent); font-weight: 850; }
+    h2 { margin: 3px 0 8px; font-size: 18px; letter-spacing: 0; }
+    p { margin: 8px 0; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .links a, .links span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .section-label {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>${escapeHtml(chronology.title)} Chronology</h1>
+    <div class="subtle">${escapeHtml(chronology.subtitle || "")}</div>
+    <div><a href="aligned_chronologies.html">Aligned timeline</a></div>
+  </header>
+  <main>
+    ${eventHtml}
+  </main>
+</body>
+</html>
+`;
+}
+
+function renderChronologyEntry(chronology, entry, sources) {
+  const links = entryLinks(entry, sources);
+  const locationHtml = entry.locationLinks?.length
+    ? `<div class="section-label">Locations</div><div class="links">${entry.locationLinks
+        .map((link) => `<a href="${escapeAttribute(link.href)}">${escapeHtml(link.display)}</a>`)
+        .join("")}</div>`
+    : "";
+  const sourceHtml = links.length
+    ? `<div class="section-label">Sources</div><div class="links">${links
+        .map((link) => `<a href="${escapeAttribute(link.href)}">${escapeHtml(link.display)}</a>`)
+        .join("")}</div>`
+    : "";
+  const details = entry.details
+    .filter((detail) => !detail.startsWith("Lane:"))
+    .map((detail) => `<p>${inlineMarkdown(detail)}</p>`)
+    .join("");
+  return `<article class="event" id="event-${escapeAttribute(entry.id)}">
+    <time>${escapeHtml(entry.dateLabel)}</time>
+    <h2>${escapeHtml(entry.title)}</h2>
+    ${entry.summary ? `<p>${escapeHtml(entry.summary)}</p>` : ""}
+    ${details}
+    ${entry.check ? `<p class="subtle"><strong>Check:</strong> ${escapeHtml(entry.check)}</p>` : ""}
+    <p><a href="aligned_chronologies.html#event-${escapeAttribute(entry.id)}">Open in aligned timeline</a></p>
+    ${locationHtml}
+    ${sourceHtml}
+  </article>`;
+}
+
+function entryLinks(entry, sources) {
+  const links = [];
+  const seen = new Set();
+  const add = (link) => {
+    if (!link?.href || seen.has(link.href)) return;
+    seen.add(link.href);
+    links.push(link);
+  };
+  for (const link of entry.bookAnchors || []) add({ href: link.href, display: link.display });
+  for (const link of entry.webAnchors || []) add({ href: link.href, display: link.display });
+  const anchoredWebSourceKeys = new Set((entry.webAnchors || []).map((source) => source.sourceKey));
+  for (const token of sourceTokensFromText(entry.sources)) {
+    const source = sources[token];
+    if (!source) continue;
+    if ((entry.bookAnchors || []).length && source.kind === "book") continue;
+    if (anchoredWebSourceKeys.has(token) && source.kind === "web") continue;
+    add({ href: source.href, display: source.display || source.description || token });
+  }
+  return links;
+}
+
+function inlineMarkdown(text) {
+  return escapeHtml(text)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replace(/"/g, "&quot;");
+}
 
 function renderHtml(data) {
   const json = JSON.stringify(data).replace(/</g, "\\u003c");
@@ -1027,6 +1215,15 @@ function renderHtml(data) {
       color: #1f2933;
     }
 
+    .drawer-section-title {
+      margin: 14px 0 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
     .source-list {
       display: grid;
       gap: 7px;
@@ -1246,6 +1443,9 @@ function renderHtml(data) {
     </div>
     <div class="drawer-summary" id="drawer-summary"></div>
     <p id="drawer-check"></p>
+    <div class="drawer-section-title" id="drawer-location-title" hidden>Locations</div>
+    <div class="source-list" id="drawer-locations" hidden></div>
+    <div class="drawer-section-title">Sources</div>
     <div class="source-list" id="drawer-sources"></div>
   </aside>
 
@@ -1295,6 +1495,8 @@ function renderHtml(data) {
     const drawerTitle = document.getElementById("drawer-title");
     const drawerSummary = document.getElementById("drawer-summary");
     const drawerCheck = document.getElementById("drawer-check");
+    const drawerLocationTitle = document.getElementById("drawer-location-title");
+    const drawerLocations = document.getElementById("drawer-locations");
     const drawerSources = document.getElementById("drawer-sources");
 
     const yearOffsets = buildYearOffsets();
@@ -1307,6 +1509,8 @@ function renderHtml(data) {
     renderToggles();
     renderFocusToggles();
     render();
+    openEventFromHash();
+    window.addEventListener("hashchange", openEventFromHash);
 
     for (const tab of viewTabs) {
       tab.addEventListener("click", () => {
@@ -1625,6 +1829,7 @@ function renderHtml(data) {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "event";
+      button.id = "event-" + entry.id;
       button.dataset.eventId = entry.id;
       button.dataset.date = entry.dateLabel;
       button.dataset.start = entry.start.value;
@@ -1634,7 +1839,7 @@ function renderHtml(data) {
         <span class="label">\${escapeHtml(entry.title)}</span>
         \${entry.check ? \`<span class="check">\${escapeHtml(entry.check)}</span>\` : ""}
       \`;
-      button.addEventListener("click", () => openDrawer(chronology, entry));
+      button.addEventListener("click", () => openDrawer(chronology, entry, true));
       column.append(button);
     }
 
@@ -1674,6 +1879,7 @@ function renderHtml(data) {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "focus-event";
+      button.id = "event-" + entry.id;
       button.dataset.eventId = entry.id;
       button.dataset.date = entry.dateLabel;
       button.dataset.start = entry.start.value;
@@ -1683,7 +1889,7 @@ function renderHtml(data) {
         <span class="label">\${escapeHtml(entry.title)}</span>
         \${entry.check ? \`<span class="check">\${escapeHtml(entry.check)}</span>\` : ""}
       \`;
-      button.addEventListener("click", () => openDrawer(MODEL.focusChronology, entry));
+      button.addEventListener("click", () => openDrawer(MODEL.focusChronology, entry, true));
       column.append(button);
     }
 
@@ -1698,8 +1904,34 @@ function renderHtml(data) {
       return line ? line.slice(prefix.length).trim().replace(/\\.$/, "") : "";
     }
 
-    function openDrawer(chronology, entry) {
+    function findEventById(id) {
+      for (const chronology of MODEL.chronologies) {
+        const entry = chronology.entries.find((candidate) => candidate.id === id);
+        if (entry) return { chronology, entry, view: "full" };
+      }
+      const focusEntry = MODEL.focusChronology.entries.find((candidate) => candidate.id === id);
+      if (focusEntry) return { chronology: MODEL.focusChronology, entry: focusEntry, view: "focus" };
+      return null;
+    }
+
+    function openEventFromHash() {
+      const match = decodeURIComponent(window.location.hash || "").match(/^#event-(.+)$/);
+      if (!match) return;
+      const found = findEventById(match[1]);
+      if (!found) return;
+      state.view = found.view;
+      if (found.view === "full" && !found.chronology.required) state.visible.add(found.chronology.id);
+      render();
+      window.requestAnimationFrame(() => {
+        const button = document.getElementById("event-" + found.entry.id);
+        if (button) button.scrollIntoView({ block: "center", inline: "center" });
+        openDrawer(found.chronology, found.entry, false);
+      });
+    }
+
+    function openDrawer(chronology, entry, updateHash = false) {
       state.selected = entry.id;
+      if (updateHash) history.replaceState(null, "", "#event-" + entry.id);
       drawerDate.textContent = chronology.title + " - " + entry.dateLabel;
       drawerTitle.textContent = entry.title;
       drawerSummary.innerHTML = "";
@@ -1721,6 +1953,19 @@ function renderHtml(data) {
         drawerSummary.append(p);
       }
       drawerCheck.textContent = entry.check ? "Check: " + entry.check : "";
+      drawerLocations.innerHTML = "";
+      const locationLinks = entry.locationLinks || [];
+      drawerLocationTitle.hidden = locationLinks.length === 0;
+      drawerLocations.hidden = locationLinks.length === 0;
+      for (const location of locationLinks) {
+        const a = document.createElement("a");
+        a.href = location.href;
+        a.target = "_blank";
+        a.rel = "noreferrer";
+        a.textContent = location.display;
+        a.title = location.description || location.display;
+        drawerLocations.append(a);
+      }
       drawerSources.innerHTML = "";
       const preciseBookSources = entry.bookAnchors || [];
       const preciseWebSources = entry.webAnchors || [];

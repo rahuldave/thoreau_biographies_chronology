@@ -13,15 +13,19 @@ Changed America: How Darwin's Theory of Evolution Ignited a Nation*.
 - `john_brown_chronology.md` - optional abolition-crisis reference line for John Brown.
 - `crisis_1858_1862_chronology.md` - focused close-up for the crowded Brown/Origin/Sanborn/Thoreau interval.
 - `aligned_chronologies.html` - interactive aligned timeline view with a full tab and an 1858-1862 zoom tab.
+- `*_chronology.html` - generated standalone HTML pages for each Markdown
+  chronology, with stable `#event-...` anchors.
 - `build_aligned_timeline.mjs` - generator for the HTML view.
 - `book_line_anchors.json` - generated map from cited `book.md` line ranges
   to Close Reading chapter/cell anchors.
 - `web_source_anchor_rules.json` - checked rules for linking external source
   chips to stable page sections when the cited source has useful anchors.
+- `location_anchor_rules.json` - generated event-to-place links into the
+  Thoreau Location Atlas.
 - `.nojekyll` - tells GitHub Pages to serve this static site as-is.
 - `index.html` - redirects the Pages root to the generated timeline.
 
-Regenerate the HTML after editing any chronology:
+Regenerate the HTML after editing any chronology or link rule file:
 
 ```bash
 node thoreau_biographies_chronology/build_aligned_timeline.mjs
@@ -54,6 +58,18 @@ stable section anchor is available and relevant to the event, the generator uses
 `web_source_anchor_rules.json` to link to that nearer section; pages without
 durable anchors remain page-level links. The current source list and configured
 anchors were live-checked on 2026-07-02.
+
+Location chips link into the Thoreau Location Atlas at
+<https://rahuldave.com/thoreau_locations_osm/>. The location rules are generated
+from the atlas catalog plus suppression/override files by:
+
+```bash
+python3 thoreau_locations_osm/scripts/build_chronology_location_links.py
+```
+
+The aligned timeline supports deep links such as
+`aligned_chronologies.html#event-thoreau-22`, and each standalone chronology
+page supports matching anchors such as `thoreau_chronology.html#event-thoreau-22`.
 
 Citation and date-check conventions are defined in the main chronology:
 
