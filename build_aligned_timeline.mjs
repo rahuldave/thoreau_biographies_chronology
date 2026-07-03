@@ -760,6 +760,8 @@ function renderChronologyPage(chronology, sources) {
     }
     main { max-width: 980px; margin: 0 auto; padding: 22px; }
     h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: 0; }
+    h1 a { color: inherit; text-decoration: none; }
+    h1 a:hover, h1 a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
     .subtle { color: var(--muted); }
     a { color: #255f85; font-weight: 700; text-decoration: none; }
     .event {
@@ -802,7 +804,7 @@ function renderChronologyPage(chronology, sources) {
 </head>
 <body>
   <header>
-    <h1>${escapeHtml(chronology.title)} Chronology</h1>
+    <h1><a href="index.html">${escapeHtml(chronology.title)} Chronology</a></h1>
     <div class="subtle">${escapeHtml(chronology.subtitle || "")}</div>
     <div><a href="aligned_chronologies.html">Aligned timeline</a></div>
   </header>
@@ -928,6 +930,16 @@ function renderHtml(data) {
       font-size: 18px;
       line-height: 1.1;
       letter-spacing: 0;
+    }
+
+    h1 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1 a:hover, h1 a:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .subhead {
@@ -1465,7 +1477,7 @@ function renderHtml(data) {
 <body>
   <header>
     <div>
-      <h1>Aligned Chronologies</h1>
+      <h1><a href="index.html">Aligned Chronologies</a></h1>
       <div class="subhead">The Book That Changed America - shared vertical date scale</div>
     </div>
     <div class="controls">
