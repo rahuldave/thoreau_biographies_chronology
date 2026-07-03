@@ -11,51 +11,59 @@ const LOCATION_ANCHOR_RULES = JSON.parse(
   fs.readFileSync(path.join(ROOT, "location_anchor_rules.json"), "utf8"),
 );
 
-const CLOSE_READING_BOOK_ID = 125;
-const CLOSE_READING_CHAPTER_BASE = `https://closereading.rahuldave.us/books/${CLOSE_READING_BOOK_ID}/chapters`;
-const CLOSE_READING_CHAPTER_IDS = {
-  FPref: 6961,
-  F1: 6962,
-  F2: 6963,
-  F3: 6964,
-  F4: 6965,
-  F5: 6966,
-  F6: 6967,
-  F7: 6968,
-  F8: 6969,
-  F9: 6970,
-  F10: 6971,
-  F11: 6972,
-  F12: 6973,
-  F13: 6974,
-  F14: 6975,
-  F15: 6976,
-  F16: 6977,
-  F17: 6978,
-  F18: 6979,
-  F19: 6980,
-  F20: 6981,
-  F21: 6982,
-  F22: 6983,
-  F23: 6984,
-  F24: 6985,
+const FULLER_CLOSE_READING = {
+  bookId: 125,
+  chapterIds: {
+    FPref: 6961,
+    F1: 6962,
+    F2: 6963,
+    F3: 6964,
+    F4: 6965,
+    F5: 6966,
+    F6: 6967,
+    F7: 6968,
+    F8: 6969,
+    F9: 6970,
+    F10: 6971,
+    F11: 6972,
+    F12: 6973,
+    F13: 6974,
+    F14: 6975,
+    F15: 6976,
+    F16: 6977,
+    F17: 6978,
+    F18: 6979,
+    F19: 6980,
+    F20: 6981,
+    F21: 6982,
+    F22: 6983,
+    F23: 6984,
+    F24: 6985,
+  },
+  lineAnchors: BOOK_LINE_ANCHORS,
 };
 
-const CHRONOLOGY_FILES = [
+const BOOK_CHRONOLOGY_FILES = [
   {
     id: "book",
     title: "Book",
-    subtitle: "Full chronology",
+    subtitle: "The Book That Changed America",
     file: "the_book_that_changed_america_chronology.md",
-    required: true,
+    kind: "book",
+    defaultVisible: true,
+    closeReading: FULLER_CLOSE_READING,
     color: "#255f85",
   },
+];
+
+const PERSON_CHRONOLOGY_FILES = [
   {
     id: "thoreau",
     title: "Thoreau",
     subtitle: "Henry David Thoreau",
     file: "thoreau_chronology.md",
-    required: true,
+    kind: "person",
+    defaultVisible: true,
     color: "#3b7d4f",
   },
   {
@@ -63,7 +71,8 @@ const CHRONOLOGY_FILES = [
     title: "Sanborn",
     subtitle: "Franklin Benjamin Sanborn",
     file: "sanborn_chronology.md",
-    required: false,
+    kind: "person",
+    defaultVisible: false,
     color: "#9f4d3f",
   },
   {
@@ -71,7 +80,8 @@ const CHRONOLOGY_FILES = [
     title: "Brace",
     subtitle: "Charles Loring Brace",
     file: "brace_chronology.md",
-    required: false,
+    kind: "person",
+    defaultVisible: false,
     color: "#6c58a8",
   },
   {
@@ -79,7 +89,8 @@ const CHRONOLOGY_FILES = [
     title: "Alcott",
     subtitle: "Amos Bronson Alcott",
     file: "bronson_alcott_chronology.md",
-    required: false,
+    kind: "person",
+    defaultVisible: false,
     color: "#a66a20",
   },
   {
@@ -87,7 +98,8 @@ const CHRONOLOGY_FILES = [
     title: "Emerson",
     subtitle: "Ralph Waldo Emerson",
     file: "emerson_chronology.md",
-    required: false,
+    kind: "person",
+    defaultVisible: false,
     color: "#2f7f7b",
   },
   {
@@ -95,7 +107,8 @@ const CHRONOLOGY_FILES = [
     title: "Darwin",
     subtitle: "Charles Darwin",
     file: "darwin_chronology.md",
-    required: false,
+    kind: "person",
+    defaultVisible: false,
     color: "#677a2f",
   },
   {
@@ -103,10 +116,13 @@ const CHRONOLOGY_FILES = [
     title: "John Brown",
     subtitle: "Abolition crisis",
     file: "john_brown_chronology.md",
-    required: false,
+    kind: "person",
+    defaultVisible: false,
     color: "#8c3f5b",
   },
 ];
+
+const CHRONOLOGY_FILES = [...BOOK_CHRONOLOGY_FILES, ...PERSON_CHRONOLOGY_FILES];
 
 const FOCUS_CHRONOLOGY = {
   id: "crisis-1858-1862",
@@ -149,7 +165,13 @@ function readLocal(file) {
   return fs.readFileSync(path.join(ROOT, file), "utf8");
 }
 
-function sourceKeyMap(markdown) {
+function sourceKeyMap(markdown, config = {}) {
+  const closeReading = config.closeReading || {};
+  const chapterIds = closeReading.chapterIds || {};
+  const chapterBase = closeReading.bookId
+    ? `https://closereading.rahuldave.us/books/${closeReading.bookId}/chapters`
+    : "";
+  const lineAnchors = closeReading.lineAnchors || {};
   const map = {};
   for (const line of markdown.split(/\r?\n/)) {
     const external = line.match(/^- \[([^\]]+)\]\((<[^>]+>|[^)]+)\)\s+-\s+(.+)$/);
@@ -163,19 +185,20 @@ function sourceKeyMap(markdown) {
       };
       continue;
     }
-    const book = line.match(/^\| (F[^| ]+) \| ([^|]+) \| `book\.md:([^`]+)` \|/);
+    const book = line.match(/^\| ([A-Za-z][A-Za-z0-9_-]*) \| ([^|]+) \| `book\.md:([^`]+)` \|/);
     if (book) {
+      const key = book[1];
       const lineRange = book[3];
       const lineNumber = lineRange.split("-")[0];
       const description = book[2].trim();
-      const chapterId = CLOSE_READING_CHAPTER_IDS[book[1]];
+      const anchor = bookAnchorForLineRange(lineRange, lineAnchors);
+      const chapterId = chapterIds[key] || anchor?.start?.chapterId;
       if (!chapterId) {
-        throw new Error(`Missing Close Reading chapter id for ${book[1]}`);
+        throw new Error(`Missing Close Reading chapter id for ${key}`);
       }
-      const anchor = bookAnchorForLineRange(lineRange);
-      map[book[1]] = {
-        href: anchor ? anchor.start.href : `${CLOSE_READING_CHAPTER_BASE}/${chapterId}`,
-        label: book[1],
+      map[key] = {
+        href: anchor ? anchor.start.href : `${chapterBase}/${chapterId}`,
+        label: key,
         display: anchor
           ? `${formatChapterReference(description)}, ${cellRangeLabel(anchor)} (book.md:${lineRange})`
           : `${formatChapterReference(description)} (Close Reading chapter ${chapterId}; book.md:${lineNumber})`,
@@ -187,6 +210,20 @@ function sourceKeyMap(markdown) {
     }
   }
   return map;
+}
+
+function mergeSourceMaps(maps) {
+  const merged = {};
+  for (const map of maps) {
+    for (const [key, source] of Object.entries(map)) {
+      if (merged[key]) {
+        if (merged[key].href === source.href) continue;
+        throw new Error(`Duplicate source key ${key} maps to both ${merged[key].href} and ${source.href}`);
+      }
+      merged[key] = source;
+    }
+  }
+  return merged;
 }
 
 function formatChapterReference(description) {
@@ -290,8 +327,12 @@ function bookAnchorsFromDetails(details) {
   return anchors;
 }
 
-function sourceTokensFromText(text) {
+function sourceTokensFromText(text, sources = null) {
   if (!text) return [];
+  if (sources) {
+    const tokens = text.match(/[A-Za-z][A-Za-z0-9_-]*/g) || [];
+    return [...new Set(tokens.filter((token) => Object.prototype.hasOwnProperty.call(sources, token)))];
+  }
   const matches = text.match(/\b(?:F\d+|FPref|[A-Z][A-Za-z]+(?:-[A-Za-z0-9]+)+|W-[A-Za-z0-9]+)\b/g);
   return [...new Set(matches || [])];
 }
@@ -337,7 +378,7 @@ function webAnchorsForEntry(entry, sources) {
     .join(" ")
     .toLowerCase();
 
-  for (const token of sourceTokensFromText(entry.sources)) {
+  for (const token of sourceTokensFromText(entry.sources, sources)) {
     const source = sources[token];
     const rules = WEB_SOURCE_ANCHOR_RULES[token];
     if (!source || source.kind !== "web" || !Array.isArray(rules)) continue;
@@ -377,11 +418,11 @@ function anchoredHref(baseHref, anchor) {
   return url.toString();
 }
 
-function bookAnchorForLineRange(lineRange) {
+function bookAnchorForLineRange(lineRange, lineAnchors = BOOK_LINE_ANCHORS) {
   const [start, end = start] = lineRange.split("-").map((value) => Number(value));
-  const exact = BOOK_LINE_ANCHORS[`${start}-${end}`];
+  const exact = lineAnchors[`${start}-${end}`];
   if (exact) return exact;
-  return Object.entries(BOOK_LINE_ANCHORS)
+  return Object.entries(lineAnchors)
     .map(([range, anchor]) => {
       const [rangeStart, rangeEnd = rangeStart] = range.split("-").map((value) => Number(value));
       return { rangeStart, rangeEnd, anchor };
@@ -614,8 +655,9 @@ function daysInMonth(year, month) {
   return new Date(Date.UTC(year, month, 0)).getUTCDate();
 }
 
-const mainMarkdown = readLocal("the_book_that_changed_america_chronology.md");
-const sources = sourceKeyMap(mainMarkdown);
+const sources = mergeSourceMaps(
+  BOOK_CHRONOLOGY_FILES.map((config) => sourceKeyMap(readLocal(config.file), config)),
+);
 const chronologies = CHRONOLOGY_FILES.map((config) => {
   const markdown = readLocal(config.file);
   return {
@@ -814,7 +856,7 @@ function entryLinks(entry, sources) {
   for (const link of entry.bookAnchors || []) add({ href: link.href, display: link.display });
   for (const link of entry.webAnchors || []) add({ href: link.href, display: link.display });
   const anchoredWebSourceKeys = new Set((entry.webAnchors || []).map((source) => source.sourceKey));
-  for (const token of sourceTokensFromText(entry.sources)) {
+  for (const token of sourceTokensFromText(entry.sources, sources)) {
     const source = sources[token];
     if (!source) continue;
     if ((entry.bookAnchors || []).length && source.kind === "book") continue;
@@ -932,7 +974,26 @@ function renderHtml(data) {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      align-items: center;
       justify-content: flex-end;
+    }
+
+    .toggle-group {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .toggle-group-title {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
     }
 
     .toggle {
@@ -952,11 +1013,6 @@ function renderHtml(data) {
     .toggle input {
       accent-color: var(--accent, #255f85);
       margin: 0;
-    }
-
-    .toggle.required {
-      color: #30363b;
-      background: #f2eee6;
     }
 
     body.focus-mode .toggles { display: none; }
@@ -1476,7 +1532,7 @@ function renderHtml(data) {
     ];
 
     const state = {
-      visible: new Set(MODEL.chronologies.map((c) => c.required ? c.id : null).filter(Boolean)),
+      visible: new Set(MODEL.chronologies.filter((c) => c.defaultVisible || c.required).map((c) => c.id)),
       visibleFocusLanes: new Set(FOCUS_LANES),
       view: "full",
       selected: null,
@@ -1569,29 +1625,46 @@ function renderHtml(data) {
 
     function renderToggles() {
       toggles.innerHTML = "";
-      for (const chronology of MODEL.chronologies) {
-        const label = document.createElement("label");
-        label.className = "toggle" + (chronology.required ? " required" : "");
-        label.style.setProperty("--accent", chronology.color);
+      const groups = [
+        { label: "Books", chronologies: MODEL.chronologies.filter((chronology) => chronology.kind === "book") },
+        { label: "People", chronologies: MODEL.chronologies.filter((chronology) => chronology.kind !== "book") },
+      ].filter((group) => group.chronologies.length);
 
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.checked = chronology.required || state.visible.has(chronology.id);
-        input.disabled = chronology.required;
-        input.addEventListener("change", () => {
-          if (input.checked) {
-            state.visible.add(chronology.id);
-          } else {
-            state.visible.delete(chronology.id);
-          }
-          render();
-        });
+      for (const group of groups) {
+        const groupElement = document.createElement("div");
+        groupElement.className = "toggle-group";
+        groupElement.setAttribute("role", "group");
+        groupElement.setAttribute("aria-label", group.label);
 
-        const text = document.createElement("span");
-        text.textContent = chronology.title;
+        const title = document.createElement("span");
+        title.className = "toggle-group-title";
+        title.textContent = group.label;
+        groupElement.append(title);
 
-        label.append(input, text);
-        toggles.append(label);
+        for (const chronology of group.chronologies) {
+          const label = document.createElement("label");
+          label.className = "toggle";
+          label.style.setProperty("--accent", chronology.color);
+
+          const input = document.createElement("input");
+          input.type = "checkbox";
+          input.checked = state.visible.has(chronology.id);
+          input.addEventListener("change", () => {
+            if (input.checked) {
+              state.visible.add(chronology.id);
+            } else {
+              state.visible.delete(chronology.id);
+            }
+            render();
+          });
+
+          const text = document.createElement("span");
+          text.textContent = chronology.title;
+
+          label.append(input, text);
+          groupElement.append(label);
+        }
+        toggles.append(groupElement);
       }
     }
 
@@ -1740,7 +1813,7 @@ function renderHtml(data) {
         const column = document.createElement("section");
         column.className = "column";
         column.style.setProperty("--accent", chronology.color);
-        if (!chronology.required && !state.visible.has(chronology.id)) {
+        if (!state.visible.has(chronology.id)) {
           column.classList.add("hidden");
         }
 
@@ -1923,7 +1996,7 @@ function renderHtml(data) {
       const found = findEventById(match[1]);
       if (!found) return;
       state.view = found.view;
-      if (found.view === "full" && !found.chronology.required) state.visible.add(found.chronology.id);
+      if (found.view === "full") state.visible.add(found.chronology.id);
       render();
       window.requestAnimationFrame(() => {
         const button = document.getElementById("event-" + found.entry.id);
@@ -2009,8 +2082,8 @@ function renderHtml(data) {
 
     function sourceTokens(text) {
       if (!text) return [];
-      const matches = text.match(/\\b(?:F\\d+|FPref|[A-Z][A-Za-z]+(?:-[A-Za-z0-9]+)+|W-[A-Za-z0-9]+)\\b/g);
-      return [...new Set(matches || [])];
+      const tokens = text.match(/[A-Za-z][A-Za-z0-9_-]*/g) || [];
+      return [...new Set(tokens.filter((token) => Object.prototype.hasOwnProperty.call(MODEL.sources, token)))];
     }
 
     function escapeHtml(value) {
