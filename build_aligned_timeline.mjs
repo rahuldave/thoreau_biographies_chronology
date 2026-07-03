@@ -788,16 +788,19 @@ function renderChronologyEntry(chronology, entry, sources) {
     .filter((detail) => !detail.startsWith("Lane:"))
     .map((detail) => `<p>${inlineMarkdown(detail)}</p>`)
     .join("");
-  return `<article class="event" id="event-${escapeAttribute(entry.id)}">
-    <time>${escapeHtml(entry.dateLabel)}</time>
-    <h2>${escapeHtml(entry.title)}</h2>
-    ${entry.summary ? `<p>${escapeHtml(entry.summary)}</p>` : ""}
-    ${details}
-    ${entry.check ? `<p class="subtle"><strong>Check:</strong> ${escapeHtml(entry.check)}</p>` : ""}
-    <p><a href="aligned_chronologies.html#event-${escapeAttribute(entry.id)}">Open in aligned timeline</a></p>
-    ${locationHtml}
-    ${sourceHtml}
-  </article>`;
+  const lines = [
+    `<article class="event" id="event-${escapeAttribute(entry.id)}">`,
+    `    <time>${escapeHtml(entry.dateLabel)}</time>`,
+    `    <h2>${escapeHtml(entry.title)}</h2>`,
+  ];
+  if (entry.summary) lines.push(`    <p>${escapeHtml(entry.summary)}</p>`);
+  if (details) lines.push(`    ${details}`);
+  if (entry.check) lines.push(`    <p class="subtle"><strong>Check:</strong> ${escapeHtml(entry.check)}</p>`);
+  lines.push(`    <p><a href="aligned_chronologies.html#event-${escapeAttribute(entry.id)}">Open in aligned timeline</a></p>`);
+  if (locationHtml) lines.push(`    ${locationHtml}`);
+  if (sourceHtml) lines.push(`    ${sourceHtml}`);
+  lines.push("  </article>");
+  return lines.join("\n");
 }
 
 function entryLinks(entry, sources) {
